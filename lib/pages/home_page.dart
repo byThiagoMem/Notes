@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/widgets/custom_card.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -19,29 +20,9 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            for (var i = 0; i < notes.length; i++)
-              Card(
-                color: Colors.pink[50],
-                elevation: 4,
-                child: ListTile(
-                  title: Text(notes[i]),
-                  onTap: () async {
-                    var response = await Navigator.pushNamed(
-                        context, '/create_note',
-                        arguments: notes[i]);
-
-                    if (response != null) {
-                      var description = response as String;
-                      if (response.isEmpty) {
-                        notes.removeAt(i);
-                      } else {
-                        notes[i] = (description.toString());
-                      }
-                      setState(() {});
-                    }
-                  },
-                ),
-              ),
+            CustomCard(
+              notes: notes,
+            ),
           ],
         ),
       ),
