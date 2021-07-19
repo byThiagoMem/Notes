@@ -26,15 +26,22 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () async {
-          var description = await Navigator.pushNamed(context, '/create_note');
-          if (description != null) {
-            notes.add(description.toString());
-            setState(() {});
-          }
-        },
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ElevatedButton(
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+          onPressed: () async {
+            var description =
+                await Navigator.pushNamed(context, '/create_note');
+            if (description != null) {
+              notes.add(description.toString());
+              setState(() {});
+            }
+          },
+        ),
       ),
     );
   }
